@@ -12,6 +12,8 @@
 % =============================================================================
 \documentclass[a4paper]{article}
 
+% Options: [english] (default) or [vietnamese]; [final] (default) or [draft]
+% e.g. \usepackage[vietnamese,draft]{config/report}
 \usepackage{config/report}
 \input{config/metadata}
 
@@ -26,6 +28,7 @@
 \input{frontmatter/members}
 \clearpage
 {\hypersetup{linkcolor=black}\tableofcontents}
+\listoftodos                % list of \todo / \note, printed only in [draft]
 
 % --- Main matter (each \include starts on a new page) -------------------------
 \include{chapters/01-brainstorming}

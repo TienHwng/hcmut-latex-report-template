@@ -5,6 +5,37 @@
   "latex-workshop.latex.auxDir": "%DIR%/build",
   "latex-workshop.latex.rootFile.useSubFile": false,
   "latex-workshop.latex.search.rootFiles.include": ["main.tex"],
+
+  // Lint with ChkTeX on save (rules in .chktexrc).
+  "latex-workshop.linting.chktex.enabled": true,
+
+  // LTeX+ grammar & spell check. LanguageTool has no Vietnamese, so it only
+  // checks the LaTeX sources (English text), not README.md.
+  "ltex.enabled": ["latex"],
+  "ltex.language": "en-US",
+  "ltex.latex.commands": {
+    "\\university{}": "ignore",
+    "\\school{}": "ignore",
+    "\\headertext{}": "ignore",
+    "\\course{}": "ignore",
+    "\\semester{}": "ignore",
+    "\\instructor{}": "ignore",
+    "\\city{}": "ignore",
+    "\\logo{}": "ignore",
+    "\\coverbackground{}": "ignore",
+    "\\addmember{}{}{}{}": "ignore",
+    "\\todo{}": "ignore",
+    "\\todo[]{}": "ignore",
+    "\\note{}": "ignore",
+    "\\note[]{}": "ignore"
+  },
+  "ltex.dictionary": {
+    "en-US": [
+      "GenAI", "deepfake", "deepfakes", "SCAMPER", "Midjourney", "Veo",
+      "Sora", "Collingridge", "watermarking", "C2PA", "HCMUT"
+    ]
+  },
+
   "files.encoding": "utf8",
   "[latex]": {
     "editor.wordWrap": "on"

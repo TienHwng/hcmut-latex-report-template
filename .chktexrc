@@ -1,0 +1,22 @@
+# ChkTeX (LaTeX linter) settings for this project.
+# LaTeX Workshop loads this file automatically and underlines problems in
+# the editor. From a terminal:  chktex -q -l .chktexrc main.tex
+#
+# Lists written as  Name { ... }  are added to the defaults;
+# Name = { ... }  would replace them.
+
+CmdLine
+{
+    # 38: punctuation before closing quotes (``word.'') is American style.
+    -n38
+}
+
+# A spaced en dash ("Low -- blocks") is used as a separator in tables.
+WordDash { 2 3 }
+
+# Template commands that take no argument; a space after them is harmless.
+Silent
+{
+    \makecover \listoftodos \printstudenttable
+    \printcontributiontable \printassessmenttable
+}

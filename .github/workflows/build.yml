@@ -1,0 +1,36 @@
+# Build main.pdf on GitHub.
+#   push / pull request  -> PDF downloadable from the run page ("Artifacts")
+#   push a tag v*        -> PDF also attached to a GitHub Release
+#                           e.g.  git tag v1.0 && git push origin v1.0
+name: Build PDF
+
+on:
+  push:
+    branches: [main, master]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed to create the release on tags
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Full TeX Live + latexmk; .latexmkrc puts main.pdf in the root.
+      - uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: report-pdf
+          path: main.pdf
+
+      - if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v3
+        with:
+          files: main.pdf

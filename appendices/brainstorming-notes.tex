@@ -1,35 +1,32 @@
-\section{Stage 1 Brainstorming Notes}
-\label{app:brainstorming-notes}
+\section{Stage 1 Brainstorming Notes}\label{app:brainstorming-notes}
 
 During the initial stage of the project, our six-member team conducted a structured ideation session to clarify the problem space surrounding Generative AI in digital content creation. Two brainstorming frameworks were used: the \textbf{5W1H method} for problem framing and the \textbf{SCAMPER technique} for early-stage solution exploration. The notes below summarize the main directions generated during the collaborative discussion.
 
-\subsection{Problem Framing via 5W1H Matrix}
+\subsection{Problem Framing via 5W1H Matrix}\label{app:5w1h}
 
 \begin{table}[H]
     \centering
-    \caption{5W1H Brainstorming Matrix for the Generative AI Content-Creation Dilemma}
-    \label{tab:5w1h}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\textwidth}{|P{2.2cm}|L|}
-        \hline
+    \caption{5W1H Brainstorming Matrix for the Generative AI Content-Creation Dilemma}\label{tab:5w1h}
+    \begin{tabularx}{\textwidth}{@{}P{2.2cm}L@{}}
+        \toprule
         \textbf{Dimension} & \textbf{Brainstorming Notes and Key Ideas} \\
-        \hline
+        \midrule
         \textbf{Who} & AI companies and model developers, data engineers, independent artists, content creators, digital platforms, vulnerable individuals affected by deepfakes, and lawmakers/regulators. \\
-        \hline
+        \addlinespace
         \textbf{What} & A growing conflict between large-scale web data collection for AI training, intellectual property protection, and the generation of highly realistic synthetic media that can be beneficial or harmful depending on use. \\
-        \hline
+        \addlinespace
         \textbf{When} & The present phase of rapid GenAI commercialization, in which technical capabilities are evolving faster than legal frameworks, policy adaptation, and detection tools. \\
-        \hline
+        \addlinespace
         \textbf{Where} & The global digital ecosystem, especially social media platforms, digital art marketplaces, online content-sharing environments, and news-related information spaces. \\
-        \hline
+        \addlinespace
         \textbf{Why} & AI organizations require large datasets to improve model capability and maintain competitiveness; creators seek protection of authorship, compensation, and recognition; society requires trustworthy digital information and protection from misuse. \\
-        \hline
+        \addlinespace
         \textbf{How} & How can GenAI systems be developed and governed to balance innovation, creator rights, and public trust? Early directions considered included stricter licensing models, provenance tracking, watermarking, platform-level safeguards, and access control mechanisms. \\
-        \hline
+        \bottomrule
     \end{tabularx}
 \end{table}
 
-\subsection{Early Solution Ideation via SCAMPER}
+\subsection{Early Solution Ideation via SCAMPER}\label{app:scamper}
 After the problem was framed, the team used the SCAMPER technique to explore possible engineering and governance directions. These ideas were not treated as final solutions, but as exploratory options for later evaluation.
 
 \begin{itemize}
@@ -48,5 +45,5 @@ After the problem was framed, the team used the SCAMPER technique to explore pos
     \item \textbf{Reverse / Rearrange:} Instead of assuming unrestricted model access first and adding safeguards later, can governance be reversed so that provenance, consent, and accountability are built into the pipeline from the beginning? \textit{Idea: A ``compliance-by-design'' approach may be more sustainable than retroactive regulation.}
 \end{itemize}
 
-\subsection{Brainstorming Outcome}
-The brainstorming session helped the team move from a broad discussion about ``AI versus human creators'' toward a more structured understanding of the issue as a \textbf{socio-technical engineering challenge}. In particular, the 5W1H analysis clarified the affected stakeholders, the urgency of the problem, and the competing interests involved, while SCAMPER helped identify possible intervention points in data governance, content provenance, platform responsibility, and system design. These notes informed the more formal \textit{Brainstorming \& Problem Framing} section in the main report.
+\subsection{Brainstorming Outcome}\label{app:brainstorming-outcome}
+The brainstorming session helped the team move from a broad discussion about ``AI versus human creators'' toward a more structured understanding of the issue as a \textbf{socio-technical engineering challenge}. In particular, the 5W1H analysis clarified the affected stakeholders, the urgency of the problem, and the competing interests involved, while SCAMPER helped identify possible intervention points in data governance, content provenance, platform responsibility, and system design. These notes informed the more formal problem framing in \cref{sec:brainstorming} of the main report.
