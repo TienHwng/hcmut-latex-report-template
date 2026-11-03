@@ -1,0 +1,294 @@
+% =============================================================================
+%  config/report.sty -- layout, packages and macros of the report template
+% -----------------------------------------------------------------------------
+%  This file contains NO report text. Everything printed on the page comes
+%  from config/metadata.tex (title, course, members, ...) or from the files in
+%  frontmatter/, chapters/ and appendices/.
+%
+%  Sections:
+%    1. Fonts & language          6. Code listings & boxes
+%    2. Page layout               7. Hyperlinks & cross-references
+%    3. Graphics & colours        8. Metadata interface (\course, \addmember...)
+%    4. Floats, captions, tables  9. Header & footer
+%    5. Lists & numbering        10. Cover page & member tables
+% =============================================================================
+\NeedsTeXFormat{LaTeX2e}[2021/06/01] % needs the kernel hook system
+\ProvidesPackage{config/report}[2026/11/03 HCMUT report template]
+
+% -----------------------------------------------------------------------------
+%  1. Fonts & language  (engine: pdfLaTeX)
+% -----------------------------------------------------------------------------
+\RequirePackage[utf8]{inputenc}            % babel-vietnamese checks for it
+\RequirePackage[T5]{fontenc}               % Vietnamese glyphs (ă, ơ, ư, đ, ...)
+\RequirePackage{lmodern}
+% The LAST language is the main one. For a report written in Vietnamese,
+% swap the order to [english,vietnamese].
+\RequirePackage[vietnamese,english]{babel}
+% Better justification & spacing. microtype has no protrusion data for the
+% T5 typewriter font, so protrusion is limited to the roman/sans families.
+\RequirePackage{microtype}
+\DeclareMicrotypeSet[protrusion]{rpt@text}{family={rm*,sf*}}
+\UseMicrotypeSet[protrusion]{rpt@text}
+
+% -----------------------------------------------------------------------------
+%  2. Page layout
+% -----------------------------------------------------------------------------
+\RequirePackage[
+  a4paper,
+  left=2.5cm, right=2.5cm,
+  top=3.5cm, bottom=2.5cm,                 % distance from paper edge to body
+  headheight=28pt,                         % room for the logo in the header
+  % bindingoffset=1cm,                     % extra inner margin for binding
+]{geometry}
+
+% No indentation; paragraphs are separated by vertical space instead.
+% Never end a paragraph with \\ -- just leave a blank line.
+\RequirePackage{parskip}
+
+% -----------------------------------------------------------------------------
+%  3. Graphics & colours
+% -----------------------------------------------------------------------------
+\RequirePackage{graphicx}
+\graphicspath{{images/}}                   % \includegraphics{foo} -> images/foo
+\RequirePackage[table]{xcolor}             % also loads colortbl (\rowcolor)
+\RequirePackage{eso-pic}                   % cover background
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc}
+
+% -----------------------------------------------------------------------------
+%  4. Floats, captions & tables
+% -----------------------------------------------------------------------------
+\RequirePackage{float}                     % [H] placement
+\RequirePackage[labelfont=bf]{caption}
+\RequirePackage{subcaption}                % subfigure / subtable
+\RequirePackage{array}
+\RequirePackage{tabularx}
+\RequirePackage{multirow}
+\RequirePackage{booktabs}                  % \toprule \midrule \bottomrule
+
+% Column types that wrap text without stretching the spaces:
+%   L   left-aligned X column     C   centred X column
+%   P{w} left-aligned p{w} column
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% -----------------------------------------------------------------------------
+%  5. Lists, math & numbering
+% -----------------------------------------------------------------------------
+\RequirePackage{enumitem}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+% Appendices: \begin{appendices} ... \end{appendices}
+% -> headings "Appendix A ...", also in the table of contents.
+\RequirePackage[title,titletoc]{appendix}
+
+% Add "References" to the table of contents (but not the TOC itself).
+\RequirePackage[nottoc]{tocbibind}
+
+% -----------------------------------------------------------------------------
+%  6. Code listings & highlight boxes
+% -----------------------------------------------------------------------------
+\RequirePackage{listings}
+\definecolor{codebg}{RGB}{255,255,242}
+\definecolor{codekw}{RGB}{38,92,190}
+\definecolor{codestring}{RGB}{196,74,116}
+\definecolor{codecomment}{RGB}{106,153,85}
+\definecolor{codenumber}{RGB}{150,150,150}
+
+\lstdefinestyle{code}{
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny\color{codenumber},
+  numbersep=8pt,
+  keywordstyle=\color{codekw}\bfseries,
+  stringstyle=\color{codestring},
+  commentstyle=\color{codecomment}\itshape,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  breaklines=true,
+  tabsize=4,
+  captionpos=b,
+  keepspaces=true,
+  showstringspaces=false,
+}
+\lstset{style=code}
+% Usage: \begin{lstlisting}[language=C, caption={...}, label={lst:foo}]
+
+\RequirePackage[many]{tcolorbox}
+% Highlighted box with a title tab.
+% Usage: \begin{keybox}{Core problem} ... \end{keybox}
+\newtcolorbox{keybox}[1]{
+  enhanced,
+  colback=blue!5!white,
+  colframe=blue!50!black,
+  colbacktitle=blue!50!black,
+  coltitle=white,
+  boxrule=1.5pt,
+  attach boxed title to top left={yshift=-2mm, xshift=5mm},
+  title={\large\bfseries #1},
+}
+
+% -----------------------------------------------------------------------------
+%  7. Hyperlinks & cross-references  (keep these last)
+% -----------------------------------------------------------------------------
+\RequirePackage{lastpage}
+\RequirePackage[vietnamese]{hyperref}      % Vietnamese glyphs in PDF bookmarks
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  % hidelinks,                             % uncomment for a print version
+}
+% \cref{tab:foo} -> "Table 3.1" (adds the name automatically)
+\RequirePackage[capitalise,nameinlink]{cleveref}
+
+% -----------------------------------------------------------------------------
+%  8. Metadata interface -- values are set in config/metadata.tex
+%     (\title and \date are the standard LaTeX commands)
+% -----------------------------------------------------------------------------
+\newcommand*{\university}[1]{\def\rpt@university{#1}}
+\newcommand*{\school}[1]{\def\rpt@school{#1}}
+\newcommand*{\headertext}[1]{\def\rpt@headertext{#1}}
+\newcommand*{\course}[1]{\def\rpt@course{#1}}
+\newcommand*{\semester}[1]{\def\rpt@semester{#1}}
+\newcommand*{\instructor}[1]{\def\rpt@instructor{#1}}
+\newcommand*{\city}[1]{\def\rpt@city{#1}}
+\newcommand*{\logo}[1]{\def\rpt@logo{#1}}
+\newcommand*{\coverbackground}[1]{\def\rpt@coverbackground{#1}}
+
+\university{}\school{}\headertext{}\course{}\semester{}
+\instructor{}\city{}\logo{}\coverbackground{}
+
+% \addmember{Full name}{Student ID}{Contribution}{Workload}
+% Members are stored once and printed by the cover and member tables.
+\newcommand*{\rpt@members}{}
+\newcommand{\addmember}[4]{%
+  \g@addto@macro\rpt@members{\rpt@member{#1}{#2}{#3}{#4}}}
+\newcounter{rpt@member}
+
+\AtBeginDocument{%
+  \hypersetup{pdftitle={\@title}, pdfsubject={\rpt@course}}}
+
+% -----------------------------------------------------------------------------
+%  9. Header & footer
+% -----------------------------------------------------------------------------
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{%
+  \ifx\rpt@logo\@empty\else
+    \raisebox{\dimexpr-0.5\height+0.5ex\relax}{%
+      \includegraphics[height=8mm]{\rpt@logo}}%
+    \hspace{0.5em}%
+  \fi
+  \textbf{\ttfamily\rpt@headertext}}
+\fancyfoot[L]{\scriptsize\ttfamily \rpt@course, Semester \rpt@semester}
+\fancyfoot[R]{\scriptsize\ttfamily Page \thepage/\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+% -----------------------------------------------------------------------------
+%  10. Cover page & member tables
+% -----------------------------------------------------------------------------
+% Students on the cover: name | ID
+\newcommand{\printstudenttable}{%
+  \begingroup
+  \def\rpt@member##1##2##3##4{##1 & ##2 \\}%
+  \begin{tabular}{|l|c|}
+    \hline
+    \multicolumn{1}{|c|}{\textbf{Student's Name}} & \textbf{Student ID} \\
+    \hline\hline
+    \rpt@members
+    \hline
+  \end{tabular}%
+  \endgroup}
+
+% No. | name | contribution | workload
+\newcommand{\printcontributiontable}{%
+  \begingroup
+  \renewcommand{\arraystretch}{1.5}%
+  \def\rpt@member##1##2##3##4{%
+    \stepcounter{rpt@member}\arabic{rpt@member}. & ##1 & ##3 & ##4 \\ \hline}%
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|r|l|L|c|}
+      \hline
+      \setcounter{rpt@member}{0}%
+      \textbf{No.} & \textbf{Full name} & \textbf{Contribution}
+        & \textbf{Percentage} \\
+      \hline\hline
+      \rpt@members
+    \end{tabularx}
+  \end{center}
+  \endgroup}
+
+% No. | name | (empty cell for the lecturer)
+\newcommand{\printassessmenttable}{%
+  \begingroup
+  \renewcommand{\arraystretch}{1.5}%
+  \def\rpt@member##1##2##3##4{%
+    \stepcounter{rpt@member}\arabic{rpt@member}. & ##1 & \\ \hline}%
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|r|l|C|}
+      \hline
+      \setcounter{rpt@member}{0}%
+      \textbf{No.} & \textbf{Full name} & \textbf{Evaluation} \\
+      \hline\hline
+      \rpt@members
+    \end{tabularx}
+  \end{center}
+  \endgroup}
+
+\newcommand{\rpt@coverrule}{%
+  {\color{blue}\rule{0.9\linewidth}{0.2mm}}\par}
+
+% Full-page background image, centred, aspect ratio kept.
+\newcommand{\rpt@coverbgpicture}{%
+  \AtPageLowerLeft{%
+    \parbox[b][\paperheight]{\paperwidth}{%
+      \vfill\centering
+      \includegraphics[width=\paperwidth, height=\paperheight,
+                       keepaspectratio]{\rpt@coverbackground}%
+      \vfill}}}
+
+\newcommand{\makecover}{%
+  \begingroup
+  % The cover and the next page are both "page 1"; skipping the cover's
+  % PDF anchor avoids hyperref's duplicate "page.1" destination warning.
+  \hypersetup{pageanchor=false}%
+  \ifx\rpt@coverbackground\@empty\else
+    \AddToShipoutPictureBG*{\rpt@coverbgpicture}%
+  \fi
+  \begin{titlepage}
+    \centering
+    {\large\bfseries \rpt@university\par \rpt@school\par}
+    \vspace{1.5\baselineskip}
+    \ifx\rpt@logo\@empty\else
+      \includegraphics[width=6cm]{\rpt@logo}\par
+      \vspace{1.5\baselineskip}
+    \fi
+    {\huge\bfseries \rpt@course\par}
+    \vspace{\baselineskip}
+    \rpt@coverrule
+    \vspace{0.5\baselineskip}
+    {\Huge\bfseries\itshape\color{blue} \@title\par}
+    \vspace{0.75\baselineskip}
+    \rpt@coverrule
+    \vspace{\baselineskip}
+    \textbf{Instructor:} \rpt@instructor\par
+    \vspace{0.5cm}
+    \printstudenttable\par
+    \vspace{1.25cm}
+    \rpt@city, \@date.\par
+  \end{titlepage}
+  \endgroup}
+
+\endinput

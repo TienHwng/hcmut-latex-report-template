@@ -1,0 +1,82 @@
+\section{Brainstorming \& Problem Framing}
+
+\subsection{Background and Context of the Problem}
+The rapid expansion and commercialization of Generative Artificial Intelligence (GenAI) has fundamentally transformed the digital content ecosystem. Tools capable of generating text, images, audio, and video now allow users to produce high-quality content with unprecedented speed, scale, and accessibility. Examples include image-generation systems such as Midjourney and Stable Diffusion, video-generation models such as Veo and Sora, and increasingly accessible voice-cloning technologies. From both engineering and societal perspectives, this shift is highly significant because it lowers barriers to creativity, increases productivity, and enables new forms of digital innovation. However, these benefits are accompanied by major concerns regarding data provenance, copyright compliance, synthetic media misuse, and the broader reliability of digital information.
+
+To frame this issue systematically, our team applied structured brainstorming methods, primarily the \textbf{5W1H framework}, supported by collaborative mind mapping. This process helped us move beyond general discussion and identify the problem as a \textbf{socio-technical engineering challenge} involving not only technical capability, but also governance, accountability, legal uncertainty, and public trust. Rather than viewing GenAI solely as a breakthrough or solely as a threat, we approached it as an engineering dilemma in which innovation, legal responsibility, and social impact must be evaluated together.
+
+A key insight from our brainstorming is that the controversy surrounding GenAI does not arise only from its outputs, but also from the way these systems are built and deployed. State-of-the-art models are commonly trained on extremely large datasets collected from online environments at scale, often with limited transparency regarding origin, authorship, consent, or licensing status. This creates a fundamental tension between rapid model improvement and the protection of intellectual labor, while also raising questions about whether existing governance mechanisms are capable of keeping pace with technological change.
+
+\subsection{Structured Brainstorming Summary}
+Using the 5W1H framework, our team identified the following key dimensions of the problem:
+
+\begin{itemize}
+  \item \textbf{Who:} The issue affects multiple stakeholder groups, including AI developers and technology firms, data engineers, content creators and artists, digital platforms, open-source communities, regulators, and the general public, especially individuals vulnerable to deepfake-related harm.
+
+  \item \textbf{What:} The central conflict concerns the use of large-scale online data for GenAI training without clear consent, attribution, or compensation, alongside the increasing ability of these systems to generate highly realistic synthetic content that may be deceptive, harmful, or socially disruptive.
+
+  \item \textbf{When:} The problem is highly urgent in the current phase of GenAI commercialization, where the pace of technological development has exceeded the pace of legal, regulatory, and detection frameworks.
+
+  \item \textbf{Where:} The issue is most visible across the global digital ecosystem, including social media platforms, online marketplaces, content-sharing environments, and increasingly professional sectors such as education, journalism, design, and communication.
+
+  \item \textbf{Why:} Organizations seek larger datasets and faster model improvement to maintain technological competitiveness, while creators seek protection of their intellectual labor and society requires trustworthy digital information and enforceable accountability.
+
+  \item \textbf{How:} The challenge is not whether GenAI should be used, but how it can be designed, deployed, and governed in ways that preserve innovation while reducing copyright disputes, deception, harmful misuse, and systemic erosion of trust.
+\end{itemize}
+
+\subsection{Core Problem Definition}
+Based on the brainstorming process, the team defines the core problem as follows:
+
+\begin{keybox}{Core problem}
+  \textit{How can Generative AI systems for digital content creation be developed and governed so that their innovative benefits are preserved while minimizing intellectual property violations, harmful deepfake misuse, and the erosion of trust in digital media?}
+\end{keybox}
+
+This problem has two closely connected dimensions. First, GenAI models rely on large-scale datasets whose provenance, ownership status, and licensing conditions are often unclear. This creates legal and ethical concerns related to copyright, consent, compensation, accountability, and fair value distribution. The issue is made more difficult by the black-box nature of many generative systems, which makes it hard to determine how particular copyrighted works influence specific outputs and therefore complicates traceability and legal responsibility.
+
+Second, the same technologies that enable creative productivity can also be used to generate deceptive or malicious synthetic media, including impersonation, non-consensual imagery, voice-cloning scams, fraud, and targeted misinformation. These two dimensions are interconnected because both emerge from the same underlying issue: the rapid deployment of powerful generative systems without sufficiently mature mechanisms for traceability, oversight, and responsible use.
+
+\subsection{Key Stakeholders and Competing Interests}
+Our brainstorming identified several major stakeholder groups whose interests are partially aligned but often in conflict:
+
+\begin{itemize}
+  \item \textbf{AI developers and technology companies} seek rapid model improvement, competitive advantage, and commercial scalability. Their priorities often include access to large datasets, reduced friction in deployment, and continued innovation under intense market pressure.
+
+  \item \textbf{Content creators and rights holders}, including artists, writers, photographers, and journalists, seek recognition, consent, fair compensation, and protection against the unauthorized reuse of their work in training datasets and generated outputs.
+
+  \item \textbf{Digital platforms and content distributors} are responsible for hosting, distributing, and moderating content. They face pressure to support innovation and user engagement while also reducing abuse, misinformation, fraud, and reputational damage.
+
+  \item \textbf{Open-source AI communities} promote broader access to generative technologies and often resist excessive concentration of AI power in a few corporations. However, the open release of highly capable models may also reduce centralized safety controls and make harmful misuse harder to prevent.
+
+  \item \textbf{Regulators, policymakers, and legal institutions} are concerned with enforceability, public safety, copyright protection, privacy, and the adaptation of legal frameworks to new technological realities.
+
+  \item \textbf{The general public} benefits from easier access to creative tools and lower content-production costs, but also faces risks related to deception, identity misuse, privacy invasion, and declining trust in digital evidence.
+
+  \item \textbf{Individuals directly targeted by deepfakes} represent a particularly vulnerable group, as they may suffer reputational, psychological, social, or financial harm even when they did not participate in the technology at all.
+\end{itemize}
+
+These stakeholders illustrate that the issue is not a simple conflict between ``technology'' and ``society.'' Instead, it is a complex engineering governance problem involving trade-offs between openness and safety, innovation and accountability, automation and human rights, and accessibility and control.
+
+\subsection{Constraints and Operational Challenges}
+From an engineering and policy perspective, several constraints make this problem difficult to address effectively.
+
+First, there is a \textbf{\textit{data provenance constraint}}. Once content has been collected at large scale from multiple online sources, it becomes difficult to verify origin, authorship, consent status, and licensing conditions. This limits traceability and complicates compliance, especially when datasets have already been integrated into large model-training pipelines.
+
+Second, there is a \textbf{\textit{technical constraint}} in detecting synthetic media. Deepfake detection remains largely reactive, with detection tools continuously challenged by improved generation techniques. This creates an ongoing adversarial cycle between generation and detection, in which defensive methods often lag behind offensive capabilities.
+
+Third, there is a \textbf{\textit{regulatory constraint}}. Legal frameworks on copyright, privacy, and AI accountability differ across jurisdictions and typically evolve more slowly than the underlying technologies. This reflects a broader \textbf{\textit{pacing problem}}, often associated with the \textbf{\textit{Collingridge Dilemma}}, in which technologies become difficult to regulate effectively because their consequences are fully recognized only after widespread deployment.
+
+Fourth, there is an \textbf{\textit{operational trade-off constraint}}. Stronger safeguards---such as watermarking, dataset filtering, provenance labeling, identity verification, or stricter access controls---may improve safety and accountability, but they can also increase cost, reduce usability, slow deployment, or limit openness. As a result, any engineering response must balance performance, compliance, scalability, accessibility, and risk mitigation.
+
+\subsection{Risks and Opportunities}
+The brainstorming process also highlighted that GenAI should not be framed only in terms of threats. The technology creates substantial opportunities, but these opportunities can only be sustained if the associated risks are managed responsibly.
+
+\textbf{Opportunities} include faster prototyping, lower barriers to content creation, increased accessibility for users without advanced technical or artistic skills, and productivity gains in sectors such as education, design, communication, engineering visualization, and creative media production. GenAI can also support personalized educational materials, accelerate concept development, and broaden participation in digital creativity by enabling non-experts to express ideas more effectively.
+
+At the same time, the \textbf{risks} are significant. These include copyright disputes, labor displacement in creative industries, fraudulent impersonation, non-consensual synthetic content, large-scale misinformation, and financial scams enabled by realistic voice or image generation. At a broader societal level, one of the most severe risks is the weakening of trust in digital media. If authentic and synthetic content become increasingly difficult to distinguish, public confidence in journalism, legal evidence, and online communication may deteriorate.
+
+A particularly serious long-term danger is the \textbf{``liar's dividend''}: the possibility that the existence of deepfakes allows individuals to dismiss genuine evidence as AI-generated. In that scenario, the problem is no longer limited to fake content alone; even authentic recordings, photographs, or testimonies may lose persuasive force. This would create not only a technical challenge, but also an epistemic and institutional one, affecting how truth, evidence, and accountability function in digital society.
+
+\subsection{Problem Framing Outcome}
+Overall, our Stage 1 brainstorming indicates that the rise of GenAI in digital content creation should be understood as a \textbf{socio-technical engineering challenge} rather than a purely legal or purely technological issue. The central challenge is to develop systems and governance mechanisms that preserve the value of innovation while ensuring accountability, fairness, traceability, and the integrity of digital information.
+
+This framing is important because it shifts the discussion away from overly simplistic positions such as ``AI should be fully unrestricted'' or ``AI should be completely blocked.'' Instead, it highlights the need for balanced engineering and governance solutions that can manage trade-offs among innovation, rights protection, public safety, and trust. This problem framing provides a strong foundation for the later stages of the project, where more specific evaluation criteria and solution directions can be developed.

@@ -1,0 +1,12 @@
+{
+  // LaTeX Workshop passes -outdir/-auxdir itself; keep these in sync with
+  // $out_dir/$aux_dir in .latexmkrc (PDF in the root, the rest in build/).
+  "latex-workshop.latex.outDir": "%DIR%",
+  "latex-workshop.latex.auxDir": "%DIR%/build",
+  "latex-workshop.latex.rootFile.useSubFile": false,
+  "latex-workshop.latex.search.rootFiles.include": ["main.tex"],
+  "files.encoding": "utf8",
+  "[latex]": {
+    "editor.wordWrap": "on"
+  }
+}

@@ -1,20 +1,45 @@
+% =============================================================================
+%  main.tex -- entry point of the report.   Build:  latexmk   (see README.md)
+%
+%    config/metadata.tex   title, course, instructor, members   <- edit first
+%    config/report.sty     packages, layout, macros (no report text)
+%    config/assets/        school logo, cover background (template images)
+%    frontmatter/          pages before the table of contents
+%    chapters/             one file per section of the report
+%    appendices/           one file per appendix
+%    bib/references.bib    bibliography database
+%    images/               report figures (\includegraphics{name} looks here)
+% =============================================================================
 \documentclass[a4paper]{article}
-\input{style/include.tex}
+
+\usepackage{config/report}
+\input{config/metadata}
+
+% While drafting, compile only some chapters (page numbers and references to
+% the other chapters are kept from the last full build):
+% \includeonly{chapters/03-solution-design}
 
 \begin{document}
 
-\input{style/shortcut.tex}
+% --- Front matter -------------------------------------------------------------
+\makecover
+\input{frontmatter/members}
+\clearpage
+{\hypersetup{linkcolor=black}\tableofcontents}
 
-\input{style/header_footer.tex}
-\input{style/cover.tex}
-\input{content/content.tex}
+% --- Main matter (each \include starts on a new page) -------------------------
+\include{chapters/01-brainstorming}
+\include{chapters/02-critical-analysis}
+\include{chapters/03-solution-design}
+\include{chapters/04-ethics-legal}
+\include{chapters/05-team-reflection}
 
-\input{content/sec1.tex}
-\input{content/sec2.tex}
-\input{content/sec3.tex}
-\input{content/sec4.tex}
-\input{content/sec5.tex}
+% --- Back matter --------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{bib/references}
 
-\input{content/references.tex}
-\input{content/appendix.tex}
+\begin{appendices}
+\include{appendices/brainstorming-notes}
+\end{appendices}
+
 \end{document}

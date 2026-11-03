@@ -1,0 +1,27 @@
+# Build output (latexmk writes everything here, see .latexmkrc)
+build/
+
+# Auxiliary files, in case the document is compiled without latexmk
+# (subset of github/gitignore TeX.gitignore)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.xdv
+/main.pdf
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+*~
+*.swp
