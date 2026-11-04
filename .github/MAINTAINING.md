@@ -19,7 +19,7 @@ Keep `AGENTS.md` in step with the template: when a macro, option, file or pitfal
 
 - The repo is `TienHwng/hcmut-latex-report-template` on GitHub (`origin`). The CI badge and the `git clone` URLs in `docs/*/00-*` use that address; update all of them if the name changes.
 - On `main`, the chapters are short placeholders that demonstrate each template feature: TikZ figure, equation, listing, booktabs table, `\cite`, `\cref`, `\ac` and `\todo`.
-- Branch `report/ai-digital-content` holds a complete sample report ("A.I. in Digital Content") built with the template. It does not receive template changes automatically: merge `main` into it after each template change.
+- Branch `report/ai-digital-content` holds a complete sample report ("A.I. in Digital Content") built with the template. It does not receive template changes automatically: merge `main` into it after each template change. The "Sample content" section of `AGENTS.md` deliberately differs on that branch (it describes the finished report instead of placeholders); keep the branch's version when merging.
 - Commit only when asked. Do not add `Co-Authored-By` or other AI attribution to commits.
 
 ## Documentation
