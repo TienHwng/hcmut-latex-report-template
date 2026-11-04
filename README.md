@@ -16,10 +16,12 @@ Bạn chỉ cần điền thông tin nhóm và viết nội dung. Trang bìa, b�
 
 <div align="center">
 
-<img src="docs/assets/preview-cover-vi.png" alt="Trang bìa của báo cáo" width="45%">
-<img src="docs/assets/preview-content-vi.png" alt="Một trang nội dung có sơ đồ TikZ, công thức và đoạn code" width="45%">
+<img src="docs/assets/preview-cover-en.png" alt="Trang bìa của báo cáo" width="49%">
+<img src="docs/assets/preview-content-en.png" alt="Một trang nội dung có sơ đồ TikZ, công thức và đoạn code" width="49%">
 
-*Trang bìa và một trang nội dung, build với option `vietnamese`.*
+*Trang bìa và một trang nội dung của bản tiếng Anh (mặc định).*
+
+*Bản tiếng Việt, build với option `vietnamese`: [trang bìa](docs/assets/preview-cover-vi.png) · [trang nội dung](docs/assets/preview-content-vi.png).*
 
 </div>
 
