@@ -2,6 +2,13 @@
 
 Template báo cáo nhóm, biên dịch bằng **pdfLaTeX + BibTeX** và có hỗ trợ tiếng Việt.
 
+Nhánh `main` là template sạch: các chương chỉ có đoạn hướng dẫn ngắn, mỗi chương minh hoạ các lệnh của template (hình, bảng, công thức, code, trích dẫn, tham chiếu, từ viết tắt). Một báo cáo hoàn chỉnh làm bằng template này nằm ở branch `report/ai-digital-content`:
+
+```sh
+git switch report/ai-digital-content   # xem bài mẫu
+git switch main                        # quay lại template
+```
+
 ## Cấu trúc
 
 ```text
@@ -30,7 +37,12 @@ Nguyên tắc là **nội dung, dữ liệu và định dạng nằm ở ba nơi
 - Đổi giao diện thì chỉ sửa `config/report.sty` và `config/assets/`.
 - Viết bài thì chỉ sửa `chapters/` và `appendices/`.
 
-Bắt đầu báo cáo mới: copy cả thư mục `config/` sang là có đủ định dạng lẫn logo.
+Bắt đầu báo cáo mới:
+
+1. Clone repo, hoặc tạo branch mới từ `main`.
+2. Sửa `config/metadata.tex` và `config/abbreviations.tex`.
+3. Thay nội dung các file trong `chapters/` và `appendices/`.
+4. Thay các entry mẫu trong `bib/references.bib`.
 
 ## Build
 
@@ -111,16 +123,16 @@ Ví dụ có sẵn trong `frontmatter/declaration.tex`.
 
 Trang *List of Abbreviations* (hay *Danh mục từ viết tắt*) tự xuất hiện sau mục lục, chỉ gồm các từ có dùng trong bài. Xoá hết khai báo thì trang này cũng biến mất. Không dùng `\ac` trong tiêu đề mục hay caption, vì nội dung đó còn được in ở mục lục: lần xuất hiện "đầu tiên" sẽ bị tính nhầm ở mục lục. Ở những chỗ đó viết chữ thường (`GenAI`). Trong nhãn in đậm thì dùng `\acs`.
 
-**Thêm chương**: tạo `chapters/06-ten-chuong.tex` bắt đầu bằng `\section{...}\label{sec:ten-chuong}`, rồi thêm `\include{chapters/06-ten-chuong}` vào `main.tex`. Mỗi `\include` tự sang trang mới, nên không cần `\newpage`.
+**Thêm chương**: tạo `chapters/05-ten-chuong.tex` bắt đầu bằng `\section{...}\label{sec:ten-chuong}`, rồi thêm `\include{chapters/05-ten-chuong}` vào `main.tex`. Mỗi `\include` tự sang trang mới, nên không cần `\newpage`.
 
 **Đoạn văn**: để một dòng trống giữa hai đoạn. **Không** kết thúc đoạn bằng `\\`, vì sẽ gây warning `Underfull \hbox`. Khoảng cách giữa các đoạn do package `parskip` lo.
 
-**Hình**: đặt file vào `images/` (hoặc thư mục con theo chương, ví dụ `images/03-solution-design/`) rồi gọi theo đường dẫn tính từ `images/`, không cần ghi đuôi file. Sơ đồ và biểu đồ nên xuất PDF (vector), ảnh chụp màn hình dùng PNG, ảnh chụp thật dùng JPG.
+**Hình**: đặt file vào `images/` (hoặc thư mục con theo chương, ví dụ `images/02-method/`) rồi gọi theo đường dẫn tính từ `images/`, không cần ghi đuôi file. Sơ đồ và biểu đồ nên xuất PDF (vector), ảnh chụp màn hình dùng PNG, ảnh chụp thật dùng JPG.
 
 ```latex
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.8\textwidth]{03-solution-design/architecture}
+  \includegraphics[width=0.8\textwidth]{02-method/architecture}
   \caption{Mô tả hình}\label{fig:architecture}
 \end{figure}
 ```
@@ -150,7 +162,7 @@ Trang *List of Abbreviations* (hay *Danh mục từ viết tắt*) tự xuất h
 **Nhãn và tham chiếu**: đặt `\label` ngay sau lệnh tạo số (`\section{...}\label{...}`, `\caption{...}\label{...}`), không xuống dòng ở giữa. Quy ước tiền tố: `sec:`, `fig:`, `tab:`, `eq:`, `lst:`, `app:`.
 
 - `\cref{tab:ten-bang}` in "Table 3.1" kèm link. Nếu đổi thứ tự chương, số tự cập nhật.
-- `\hyperref[sec:solution-design]{Stage~3}` giữ nguyên chữ bạn viết nhưng biến nó thành link. Dùng khi tên gọi cố định (như "Stage 3" theo đề bài) không phải là số mục.
+- `\hyperref[sec:method]{Stage~2}` giữ nguyên chữ bạn viết nhưng biến nó thành link. Dùng khi tên gọi cố định (như "Stage 2" theo đề bài) không phải là số mục.
 
 **Trích dẫn**: thêm entry vào `bib/references.bib` rồi gọi `Code of Ethics~\cite{acm}`. Dấu `~` là khoảng trắng không ngắt dòng, giúp `[1]` không bị đẩy xuống đầu dòng sau. Danh sách tài liệu tham khảo dùng style IEEE và đánh số theo thứ tự xuất hiện. Với văn bản luật hay tổ chức, đặt tên trong cặp ngoặc kép `{{...}}` để BibTeX không tách thành họ và tên.
 

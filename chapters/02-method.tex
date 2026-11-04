@@ -1,0 +1,47 @@
+\section{Method}\label{sec:method}
+
+\subsection{Overview}\label{sec:overview}
+Explain how the work was carried out. \Cref{fig:workflow} shows a diagram drawn directly in LaTeX with TikZ, so it needs no image file.
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[
+      node distance=8mm,
+      box/.style={draw=primary, fill=primary!5, rounded corners,
+                  minimum width=26mm, minimum height=9mm, align=center},
+      arrow/.style={-Latex, thick, primary}]
+    \node[box] (data) {Collect\\data};
+    \node[box, right=of data] (analysis) {Analyse};
+    \node[box, right=of analysis] (design) {Design\\solution};
+    \node[box, right=of design] (report) {Write\\report};
+    \draw[arrow] (data) -- (analysis);
+    \draw[arrow] (analysis) -- (design);
+    \draw[arrow] (design) -- (report);
+  \end{tikzpicture}
+  \caption{Workflow of the project}\label{fig:workflow}
+\end{figure}
+
+% A figure from a file in images/ (no extension needed):
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{02-method/architecture}
+%   \caption{System architecture}\label{fig:architecture}
+% \end{figure}
+
+\subsection{Formulas}\label{sec:formulas}
+Numbered equations get a label like any other object. \Cref{eq:weighted-score} gives the weighted score used to compare options:
+\begin{equation}
+  S = \sum_{i=1}^{n} w_i \, s_i, \qquad \sum_{i=1}^{n} w_i = 1
+  \label{eq:weighted-score}
+\end{equation}
+where $s_i$ is the score of criterion $i$ and $w_i$ its weight.
+
+\subsection{Code}\label{sec:code}
+Source code is shown with \texttt{lstlisting}, as in \cref{lst:score}.
+
+\begin{lstlisting}[language=Python, caption={Computing the weighted score}, label={lst:score}]
+def weighted_score(scores, weights):
+    """Return the weighted sum of the criterion scores."""
+    assert abs(sum(weights) - 1) < 1e-9
+    return sum(w * s for w, s in zip(weights, scores))
+\end{lstlisting}

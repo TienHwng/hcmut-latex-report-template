@@ -1,0 +1,25 @@
+\section{Results}\label{sec:results}
+
+\subsection{Comparison of Options}\label{sec:comparison}
+Present the results. Tables use the booktabs style: no vertical rules, three horizontal rules and extra space between long rows. \Cref{tab:comparison} applies \cref{eq:weighted-score} to three options.
+
+\begin{table}[H]
+  \centering
+  \caption{Example comparison of three options}\label{tab:comparison}
+  \begin{tabularx}{\textwidth}{@{}P{3cm}LC@{}}
+    \toprule
+    \textbf{Option} & \textbf{Main strength} & \textbf{Score} \\
+    \midrule
+    Option A & Cheapest to implement, but limited in scope. & 0.55 \\
+    \addlinespace
+    Option B & Balanced cost and benefit. & 0.80 \\
+    \addlinespace
+    Option C & Most complete, but slow to deploy. & 0.70 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+\subsection{Discussion}\label{sec:discussion}
+Interpret the results: why Option B scores highest, which assumptions matter most and what the limits of the analysis are.%
+% A draft note, visible only with the [draft] option of config/report:
+\todo{Replace the example data with real results.}

@@ -25,7 +25,7 @@
 
 % While drafting, compile only some chapters (page numbers and references to
 % the other chapters are kept from the last full build):
-% \includeonly{chapters/03-solution-design}
+% \includeonly{chapters/02-method}
 
 \begin{document}
 
@@ -39,18 +39,17 @@
 \printfrontlists            % figures/tables [lists], abbreviations (if any)
 
 % --- Main matter (each \include starts on a new page) -------------------------
-\include{chapters/01-brainstorming}
-\include{chapters/02-critical-analysis}
-\include{chapters/03-solution-design}
-\include{chapters/04-ethics-legal}
-\include{chapters/05-team-reflection}
+\include{chapters/01-introduction}
+\include{chapters/02-method}
+\include{chapters/03-results}
+\include{chapters/04-conclusion}
 
 % --- Back matter --------------------------------------------------------------
 \bibliographystyle{IEEEtran}
 \bibliography{bib/references}
 
 \begin{appendices}
-\include{appendices/brainstorming-notes}
+\include{appendices/example}
 \end{appendices}
 
 \end{document}

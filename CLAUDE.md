@@ -4,7 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A pdfLaTeX + BibTeX group-report template for HCMUT (Vietnam), currently filled with a sample report ("A.I. in Digital Content"). The user writes to Claude in Vietnamese; README.md is in Vietnamese and is the user-facing guide. Keep it in sync when the template's behaviour changes, and keep it markdownlint-clean.
+A pdfLaTeX + BibTeX group-report template for HCMUT (Vietnam).
+
+- On `main`, the chapters are short placeholders that demonstrate each template feature: TikZ figure, equation, listing, booktabs table, `\cite`, `\cref`, `\ac` and `\todo`.
+- Branch `report/ai-digital-content` holds a complete sample report ("A.I. in Digital Content") built with the template. It does not receive later template changes automatically. The user writes to Claude in Vietnamese; README.md is in Vietnamese and is the user-facing guide. Keep it in sync when the template's behaviour changes, and keep it markdownlint-clean.
 
 ## Commands
 
@@ -96,5 +99,5 @@ The same pattern drives `\printsignaturetable`, which the declaration page uses.
 - **Concurrent builds.** The user's VS Code has LaTeX Workshop open with auto-save and build-on-save. When Claude edits files while also running `latexmk`, two builds can race in `build/`. That gives spurious failures, such as BibTeX reporting "no \citation commands", and leaves stray `build/pdflatex*.fls` files. If a failure looks impossible, rerun before debugging.
 - **Bash escaping.** In the Git Bash tool, backslashes inside heredocs and `sed`/`perl` one-liners get mangled, and `sed` fails on UTF-8 patterns. For scripted edits of `.tex` files, write a Python script to a file and run it.
 - **PDF text checks.** On Windows, `pdftotext` defaults to Latin-1 output and drops Vietnamese diacritics. Use `pdftotext -enc UTF-8`, and set `PYTHONIOENCODING=utf-8` when printing from Python.
-- **Open content issue.** The role pairs described in chapter 5 do not match the Contribution column in `config/metadata.tex`. A `\todo` marks the spot. Leave it for the team to resolve rather than inventing roles.
+- **Open content issue (sample branch only).** On `report/ai-digital-content`, the role pairs described in chapter 5 do not match the Contribution column in `config/metadata.tex`. A `\todo` marks the spot. Leave it for the team to resolve rather than inventing roles.
 - **Commits.** Commit only when the user asks.
