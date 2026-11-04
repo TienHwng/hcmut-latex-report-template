@@ -1,9 +1,10 @@
 # Check and build the report on GitHub.
 #   lint                 -> ChkTeX with .chktexrc; any warning fails the check
+#   docs                 -> markdownlint (.markdownlint.jsonc) on README and docs/
 #   build                -> PDF downloadable from the run page ("Artifacts")
 #   push a tag v*        -> PDF also attached to a GitHub Release
 #                           e.g.  git tag v1.0 && git push origin v1.0
-# The two jobs run in parallel, so a lint warning never blocks the PDF.
+# The jobs run in parallel, so a lint warning never blocks the PDF.
 name: Build PDF
 
 on:
@@ -25,6 +26,16 @@ jobs:
       - uses: xu-cheng/texlive-action@v3
         with:
           run: chktex -q -l .chktexrc main.tex
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: DavidAnson/markdownlint-cli2-action@v25
+        with:
+          globs: |
+            *.md
+            docs/**/*.md
 
   build:
     runs-on: ubuntu-latest

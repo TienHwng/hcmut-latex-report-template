@@ -1,5 +1,9 @@
 % =============================================================================
 %  config/report.sty -- layout, packages and macros of the report template
+%
+%  Copyright (c) 2026 Tien Hung Nguyen
+%  SPDX-License-Identifier: MIT
+%  Documents made with this template belong to their authors; see NOTICE.md.
 % -----------------------------------------------------------------------------
 %  This file contains NO report text. Everything printed on the page comes
 %  from config/metadata.tex (title, course, members, ...) or from the files in
@@ -242,6 +246,15 @@
   \rpt@crefname{item}{Mục}
   \rpt@crefname{footnote}{Chú thích}
   \rpt@crefname{page}{Trang}
+  % Words between several references: "Hình 1 và 2", "Bảng 1, 2 và 3",
+  % "Công thức (1) đến (3)".
+  \def\crefpairconjunction{ và }
+  \def\crefmiddleconjunction{, }
+  \def\creflastconjunction{ và }
+  \def\crefpairgroupconjunction{ và }
+  \def\crefmiddlegroupconjunction{, }
+  \def\creflastgroupconjunction{ và }
+  \def\crefrangeconjunction{ đến }
 \fi
 
 % Abbreviations (acro). Declare them in config/abbreviations.tex with

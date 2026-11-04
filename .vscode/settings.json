@@ -45,6 +45,13 @@
     ]
   },
 
+  // Code Spell Checker (if installed) has no Vietnamese dictionary and would
+  // flag every word of the Vietnamese docs.
+  "cSpell.ignorePaths": [
+    "**/node_modules/**", "**/.git/**", "**/build/**",
+    "README.md", "docs/vi/**"
+  ],
+
   "files.encoding": "utf8",
   "[latex]": {
     "editor.wordWrap": "on"

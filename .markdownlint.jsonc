@@ -1,0 +1,15 @@
+// markdownlint settings for README.md and docs/ (used by the VS Code
+// extension and by markdownlint-cli2).
+{
+  // Prose is soft-wrapped by the editor; one paragraph per line keeps diffs
+  // and translations easy to compare.
+  "MD013": false,
+
+  // Only the centred README header (logo, title, badges) uses HTML.
+  "MD033": {
+    "allowed_elements": ["div", "img"]
+  },
+
+  // The README opens with a centred logo before its # heading.
+  "MD041": { "allow_preamble": true }
+}
