@@ -242,6 +242,15 @@
   \rpt@crefname{item}{Mục}
   \rpt@crefname{footnote}{Chú thích}
   \rpt@crefname{page}{Trang}
+  % Words between several references: "Hình 1 và 2", "Bảng 1, 2 và 3",
+  % "Công thức (1) đến (3)".
+  \def\crefpairconjunction{ và }
+  \def\crefmiddleconjunction{, }
+  \def\creflastconjunction{ và }
+  \def\crefpairgroupconjunction{ và }
+  \def\crefmiddlegroupconjunction{, }
+  \def\creflastgroupconjunction{ và }
+  \def\crefrangeconjunction{ đến }
 \fi
 
 % Abbreviations (acro). Declare them in config/abbreviations.tex with
