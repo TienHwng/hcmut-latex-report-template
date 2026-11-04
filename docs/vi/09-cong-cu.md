@@ -58,6 +58,8 @@ Một bản build tốt **không có cảnh báo nào**. Sau khi build, tab *Pro
 | `.vscode/settings.json` | Cấu hình LaTeX Workshop, ChkTeX, LTeX+ |
 | `.vscode/extensions.json` | Extension VS Code gợi ý cài |
 | `.github/workflows/build.yml` | GitHub Actions: kiểm tra, build PDF, release |
+| `AGENTS.md`, `CLAUDE.md` | Hướng dẫn cho trợ lý AI (xem [Bắt đầu](00-bat-dau.md#dùng-cùng-trợ-lý-ai)) |
+| `.github/MAINTAINING.md` | Ghi chú cho người bảo trì template; không cần khi viết báo cáo |
 
 ## Kiểm tra lỗi định dạng: ChkTeX
 

@@ -58,6 +58,8 @@ A good build has **no warnings at all**. After a build, the *Problems* tab shoul
 | `.vscode/settings.json` | Settings for LaTeX Workshop, ChkTeX, LTeX+ |
 | `.vscode/extensions.json` | Extensions VS Code recommends installing |
 | `.github/workflows/build.yml` | GitHub Actions: linting, building the PDF, releases |
+| `AGENTS.md`, `CLAUDE.md` | Instructions for AI assistants (see [Getting started](00-getting-started.md#using-an-ai-assistant)) |
+| `.github/MAINTAINING.md` | Notes for whoever maintains the template itself; not needed to write a report |
 
 ## Linting: ChkTeX
 

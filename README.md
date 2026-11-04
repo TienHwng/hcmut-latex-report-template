@@ -33,6 +33,7 @@ Bạn chỉ cần điền thông tin nhóm và viết nội dung. Trang bìa, b�
 - **Bản nháp cho cả nhóm**: ghi chú bên lề và chữ chìm DRAFT, tự biến mất ở bản nộp.
 - **Tham chiếu và trích dẫn**: tự đánh số, trích dẫn chuẩn IEEE, danh mục từ viết tắt, danh sách hình/bảng, phụ lục.
 - **Công cụ đi kèm**: kiểm tra lỗi LaTeX (ChkTeX), soát chính tả tiếng Anh (LTeX+), đếm chữ, build PDF tự động trên GitHub Actions.
+- **Dùng được với trợ lý AI**: file `AGENTS.md` hướng dẫn Claude, Copilot, Cursor… sửa đúng file và tránh các lỗi build thường gặp.
 
 ## Bắt đầu nhanh
 
@@ -69,6 +70,7 @@ flowchart LR
 ```text
 template-latex/
 ├── main.tex               # Điểm vào: chọn option, sắp thứ tự các phần
+├── AGENTS.md              # Hướng dẫn cho trợ lý AI (Claude, Copilot…)
 ├── config/
 │   ├── metadata.tex       # Môn học, đề tài, giảng viên, thành viên (sửa đầu tiên)
 │   ├── abbreviations.tex  # Danh sách từ viết tắt
@@ -89,7 +91,7 @@ Các file còn lại (`build/`, `.latexmkrc`, `.vscode/`, `.github/`…) là fil
 
 Hướng dẫn đầy đủ nằm trong [`docs/vi`](docs/vi/README.md). Bản tiếng Anh: [`docs/en`](docs/en/README.md).
 
-- [Bắt đầu](docs/vi/00-bat-dau.md): cài đặt, tạo báo cáo mới, kiểm tra trước khi nộp
+- [Bắt đầu](docs/vi/00-bat-dau.md): cài đặt, tạo báo cáo mới, dùng cùng trợ lý AI, kiểm tra trước khi nộp
 - [Thông tin báo cáo và trang bìa](docs/vi/01-thong-tin-bao-cao.md)
 - [Tuỳ chọn của template](docs/vi/02-tuy-chon.md)
 - [Soạn thảo văn bản](docs/vi/03-soan-thao.md)

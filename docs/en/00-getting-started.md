@@ -75,6 +75,12 @@ Add your sources to `bib/references.bib` and delete the sample entries you do no
 
 Build, proofread the PDF, and go through the checklist below. The file to submit is `main.pdf` in the root folder.
 
+## Using an AI assistant
+
+If you ask an AI (Claude, ChatGPT, Copilot, Cursor…) to write or edit the report, have it read `AGENTS.md` in the root folder first. It tells the AI which files to edit, which template commands to use and how to avoid the common build errors (such as `%` signs and Vietnamese author names in the `.bib` file). Claude Code, Copilot, Cursor and Codex read it on their own when you open the template folder; with ChatGPT or Claude on the web, attach it along with the `.tex` files to edit.
+
+An AI can still make up sources or numbers. Check every citation before you submit.
+
 ## Before you submit
 
 - [ ] The `\usepackage` line in `main.tex` **no longer** contains `draft` (no DRAFT watermark, no notes).

@@ -25,6 +25,7 @@ The [main README](../../README.md) is in Vietnamese; this page is its English co
 - **Drafts for the whole team**: margin notes and a DRAFT watermark, both gone in the final version.
 - **References and citations**: automatic numbering, IEEE citations, list of abbreviations, lists of figures and tables, appendices.
 - **Tooling**: LaTeX linting (ChkTeX), English spell checking (LTeX+), word count, automatic PDF builds on GitHub Actions.
+- **Ready for AI assistants**: `AGENTS.md` tells Claude, Copilot, Cursor… which files to edit and how to avoid the common build errors.
 
 ## Quick start
 
@@ -61,6 +62,7 @@ flowchart LR
 ```text
 template-latex/
 ├── main.tex               # Entry point: options, order of the parts
+├── AGENTS.md              # Instructions for AI assistants (Claude, Copilot…)
 ├── config/
 │   ├── metadata.tex       # Course, title, instructor, members (edit first)
 │   ├── abbreviations.tex  # Abbreviations
@@ -85,7 +87,7 @@ Every LaTeX example in these pages has been compiled against the template, so yo
 
 | Page | Covers |
 | --- | --- |
-| [Getting started](00-getting-started.md) | Installation, starting a new report, the pre-submission checklist |
+| [Getting started](00-getting-started.md) | Installation, starting a new report, using an AI assistant, the pre-submission checklist |
 | [Report details and cover page](01-report-info.md) | Course, title, instructor, date, members; generated tables; declaration |
 | [Template options](02-options.md) | `vietnamese`, `draft`, `print`, `lists`; language-dependent text |
 

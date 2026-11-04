@@ -36,6 +36,7 @@ jobs:
           globs: |
             *.md
             docs/**/*.md
+            .github/*.md
 
   build:
     runs-on: ubuntu-latest
