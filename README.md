@@ -8,10 +8,12 @@ Template báo cáo nhóm, biên dịch bằng **pdfLaTeX + BibTeX** và có hỗ
 main.tex                  Điểm vào: chỉ liệt kê các phần của báo cáo
 config/
   metadata.tex            Tên đề tài, môn học, giảng viên, thành viên  <- sửa đầu tiên
+  abbreviations.tex       Danh sách từ viết tắt
   report.sty              Package, lề trang, màu, header/footer, trang bìa, macro
   assets/                 Logo trường, ảnh nền bìa (ảnh của template, không phải của bài)
 frontmatter/
   members.tex             Bảng phân công và bảng đánh giá của giảng viên
+  declaration.tex         Lời cam đoan có chỗ ký (bật trong main.tex khi cần)
 chapters/                 Mỗi section một file: 01-..., 02-..., ...
 appendices/               Mỗi phụ lục một file
 bib/references.bib        Tài liệu tham khảo
@@ -38,7 +40,7 @@ Bắt đầu báo cáo mới: copy cả thư mục `config/` sang là có đủ 
 | Tự build lại mỗi khi lưu | `latexmk -pvc` |
 | Xoá file phụ | `latexmk -c` (giữ PDF) hoặc `latexmk -C` (xoá cả PDF) |
 | VS Code | Cài extension **LaTeX Workshop**, mở `main.tex`, rồi lưu file là tự build (đã cấu hình sẵn trong `.vscode/settings.json`) |
-| Overleaf | Upload toàn bộ thư mục, chọn compiler **pdfLaTeX** và main document **main.tex** (chưa kiểm tra `.latexmkrc` trên Overleaf, nếu lỗi thì xoá file này trên Overleaf) |
+| Overleaf | Upload toàn bộ thư mục, chọn compiler **pdfLaTeX** và main document **main.tex**. Overleaf tự chọn thư mục output nên `.latexmkrc` không gây ảnh hưởng |
 | GitHub | Push lên là tự build, xem mục [Build trên GitHub](#build-trên-github) |
 
 **Nhảy qua lại giữa code và PDF (SyncTeX)** trong VS Code:
@@ -64,8 +66,18 @@ Khi đang viết một chương, bỏ comment dòng `\includeonly{...}` trong `m
 | `vietnamese` | Chuyển tất cả sang tiếng Việt: "Mục lục", "Tài liệu tham khảo", "Bảng 3.1", "Giảng viên hướng dẫn", "MSSV", "Trang 3/18"..., kể cả chữ mà `\cref` in ra ("Mục 2.4", "Phụ lục A") |
 | `final` (mặc định) | Bản để nộp |
 | `draft` | Bản nháp: hiện ghi chú `\todo`/`\note` bên lề, danh sách ghi chú sau mục lục và chữ chìm **DRAFT** |
+| `print` | Bản in giấy: link và số trích dẫn màu đen, không có khung |
+| `lists` | Thêm danh sách hình và danh sách bảng sau mục lục |
 
-Với báo cáo tiếng Việt, nhớ đổi luôn `\date{...}` trong `config/metadata.tex` (ví dụ `\date{Tháng 4 năm 2026}`).
+**Ngày trên bìa**: nếu xoá dòng `\date{...}` trong `config/metadata.tex`, bìa tự in tháng và năm lúc build, theo ngôn ngữ đã chọn ("November 2026" hoặc "tháng 11 năm 2026"). Giữ dòng đó nếu muốn cố định ngày nộp.
+
+**Văn bản khác nhau theo ngôn ngữ**: trong các file nội dung có thể viết
+
+```latex
+\ifreportvietnamese Văn bản tiếng Việt \else English text \fi
+```
+
+Ví dụ có sẵn trong `frontmatter/declaration.tex`.
 
 **Màu chủ đạo**: hai màu `primary` (xanh đậm) và `secondary` (xanh nhạt) lấy từ logo trường, khai báo ở mục 3 của `config/report.sty`. Đổi hai dòng đó là đổi màu tên đề tài, đường kẻ trên bìa, link, hộp `keybox` và ghi chú nháp. Trong bài cũng dùng được, ví dụ `\textcolor{primary}{...}`.
 
@@ -76,6 +88,28 @@ Với báo cáo tiếng Việt, nhớ đổi luôn `\date{...}` trong `config/me
 ```latex
 \addmember{Nguyễn Văn A}{2312345}{Viết chương 2}{100\%}
 ```
+
+**Thông tin thêm trên bìa** (trong `config/metadata.tex`, để trống hoặc xoá thì không hiện):
+
+```latex
+\reporttype{BÁO CÁO BÀI TẬP LỚN}   % dòng dưới tên môn học
+\classcode{L01}                    % "Lớp: L01"
+\group{5}                          % "Nhóm: 5"
+```
+
+**Lời cam đoan**: bỏ comment dòng `\input{frontmatter/declaration}` trong `main.tex`. Trang này có đoạn cam đoan (tự đổi theo ngôn ngữ) và bảng để từng thành viên ký, lấy từ danh sách `\addmember`.
+
+**Từ viết tắt**: khai báo trong `config/abbreviations.tex`, rồi dùng `\ac{key}` trong bài.
+
+```latex
+\abbreviation{genai}{GenAI}{Generative Artificial Intelligence}   % khai báo
+\ac{genai}    % lần đầu: "Generative Artificial Intelligence (GenAI)", sau đó: "GenAI"
+\Ac{genai}    % như \ac nhưng viết hoa chữ đầu, dùng ở đầu câu
+\acs{genai}   % luôn in dạng ngắn "GenAI"
+\acl{genai}   % luôn in dạng đầy đủ
+```
+
+Trang *List of Abbreviations* (hay *Danh mục từ viết tắt*) tự xuất hiện sau mục lục, chỉ gồm các từ có dùng trong bài. Xoá hết khai báo thì trang này cũng biến mất. Không dùng `\ac` trong tiêu đề mục hay caption, vì nội dung đó còn được in ở mục lục: lần xuất hiện "đầu tiên" sẽ bị tính nhầm ở mục lục. Ở những chỗ đó viết chữ thường (`GenAI`). Trong nhãn in đậm thì dùng `\acs`.
 
 **Thêm chương**: tạo `chapters/06-ten-chuong.tex` bắt đầu bằng `\section{...}\label{sec:ten-chuong}`, rồi thêm `\include{chapters/06-ten-chuong}` vào `main.tex`. Mỗi `\include` tự sang trang mới, nên không cần `\newpage`.
 
@@ -160,9 +194,10 @@ Mở thư mục bằng VS Code sẽ thấy gợi ý cài các extension trong `.
 
 ## Build trên GitHub
 
-`.github/workflows/build.yml` build `main.pdf` mỗi khi push hoặc mở pull request:
+`.github/workflows/build.yml` chạy hai việc song song mỗi khi push hoặc mở pull request:
 
-- PDF nằm ở trang của lần chạy, trong tab *Actions*, mục *Artifacts*.
+- **lint**: chạy ChkTeX với `.chktexrc`. Có cảnh báo nào thì GitHub đánh dấu đỏ, nhưng PDF vẫn được build.
+- **build**: build `main.pdf`. PDF nằm ở trang của lần chạy, trong tab *Actions*, mục *Artifacts*.
 - Khi push một tag bắt đầu bằng `v`, PDF được đính kèm vào một GitHub Release. Đây là cách tiện để nộp hoặc chia sẻ bản chốt:
 
   ```sh

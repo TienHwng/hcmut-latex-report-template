@@ -1,21 +1,27 @@
 % =============================================================================
 %  main.tex -- entry point of the report.   Build:  latexmk   (see README.md)
 %
-%    config/metadata.tex   title, course, instructor, members   <- edit first
-%    config/report.sty     packages, layout, macros (no report text)
-%    config/assets/        school logo, cover background (template images)
-%    frontmatter/          pages before the table of contents
-%    chapters/             one file per section of the report
-%    appendices/           one file per appendix
-%    bib/references.bib    bibliography database
-%    images/               report figures (\includegraphics{name} looks here)
+%    config/metadata.tex       title, course, instructor, members  <- edit first
+%    config/abbreviations.tex  abbreviations used with \ac{...}
+%    config/report.sty         packages, layout, macros (no report text)
+%    config/assets/            school logo, cover background (template images)
+%    frontmatter/              pages before the table of contents
+%    chapters/                 one file per section of the report
+%    appendices/               one file per appendix
+%    bib/references.bib        bibliography database
+%    images/                   report figures (\includegraphics{name} looks here)
 % =============================================================================
 \documentclass[a4paper]{article}
 
-% Options: [english] (default) or [vietnamese]; [final] (default) or [draft]
+% Options (any combination, see README.md):
+%   english | vietnamese    language of headings, cover and tables
+%   final   | draft         draft shows \todo notes and a DRAFT watermark
+%   print                   black links, for printing on paper
+%   lists                   list of figures and list of tables
 % e.g. \usepackage[vietnamese,draft]{config/report}
 \usepackage{config/report}
 \input{config/metadata}
+\input{config/abbreviations}
 
 % While drafting, compile only some chapters (page numbers and references to
 % the other chapters are kept from the last full build):
@@ -26,9 +32,11 @@
 % --- Front matter -------------------------------------------------------------
 \makecover
 \input{frontmatter/members}
+% \input{frontmatter/declaration}   % declaration page, if the course asks
 \clearpage
 {\hypersetup{linkcolor=black}\tableofcontents}
 \listoftodos                % list of \todo / \note, printed only in [draft]
+\printfrontlists            % figures/tables [lists], abbreviations (if any)
 
 % --- Main matter (each \include starts on a new page) -------------------------
 \include{chapters/01-brainstorming}

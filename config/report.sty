@@ -8,8 +8,10 @@
 %  Options:  \usepackage[<language>,<mode>]{config/report}
 %    english     (default) English headings, captions and labels
 %    vietnamese  Vietnamese headings, captions, labels and \cref names
-%    final       (default) print version
+%    final       (default) version to submit
 %    draft       show \todo / \note margin notes and a DRAFT watermark
+%    print       black links without frames, for printing on paper
+%    lists       \printfrontlists also prints a list of figures and tables
 %
 %  Sections:
 %    0. Options                   6. Code listings, boxes & text macros
@@ -17,7 +19,7 @@
 %    2. Page layout               8. Metadata interface (\course, \addmember...)
 %    3. Graphics & colours        9. Header & footer
 %    4. Floats, captions, tables 10. Cover page & member tables
-%    5. Lists & numbering
+%    5. Lists & numbering        11. Lists after the table of contents
 % =============================================================================
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{config/report}[2026/11/03 HCMUT report template]
@@ -31,8 +33,16 @@
 \DeclareOption{vietnamese}{\rpt@vietnamesetrue}
 \DeclareOption{final}{\rpt@draftfalse}
 \DeclareOption{draft}{\rpt@drafttrue}
+\newif\ifrpt@print
+\DeclareOption{print}{\rpt@printtrue}
+\newif\ifrpt@lists
+\DeclareOption{lists}{\rpt@liststrue}
 \DeclareOption*{\PackageWarning{config/report}{Unknown option `\CurrentOption'}}
 \ProcessOptions\relax
+
+% For text that differs by language in the report files:
+%   \ifreportvietnamese Văn bản tiếng Việt \else English text \fi
+\let\ifreportvietnamese\ifrpt@vietnamese
 
 % -----------------------------------------------------------------------------
 %  1. Fonts & language  (engine: pdfLaTeX)
@@ -203,8 +213,8 @@
   linkcolor=primary,
   citecolor=primary,
   urlcolor=primary,
-  % hidelinks,                             % uncomment for a print version
 }
+\ifrpt@print\hypersetup{hidelinks}\fi      % [print]: links look like text
 \ifrpt@vietnamese\hypersetup{pdflang=vi}\else\hypersetup{pdflang=en}\fi
 % PDF viewer sidebar: numbered bookmarks, top level expanded.
 \RequirePackage[numbered, open, openlevel=1]{bookmark}
@@ -232,6 +242,18 @@
   \rpt@crefname{page}{Trang}
 \fi
 
+% Abbreviations (acro). Declare them in config/abbreviations.tex with
+%   \abbreviation{genai}{GenAI}{Generative Artificial Intelligence}
+% and write \ac{genai} in the text: the first use prints
+% "Generative Artificial Intelligence (GenAI)", later uses print "GenAI".
+% \acs{genai} = short form only, \acl{genai} = long form only,
+% \acp{genai} = plural ("GenAIs"); \printfrontlists lists the used ones.
+\RequirePackage{acro}
+\newif\ifrpt@abbreviations
+\newcommand{\abbreviation}[3]{%
+  \DeclareAcronym{#1}{short={#2}, long={#3}}%
+  \global\rpt@abbreviationstrue}
+
 % -----------------------------------------------------------------------------
 %  8. Metadata interface -- values are set in config/metadata.tex
 %     (\title and \date are the standard LaTeX commands)
@@ -245,9 +267,25 @@
 \newcommand*{\city}[1]{\def\rpt@city{#1}}
 \newcommand*{\logo}[1]{\def\rpt@logo{#1}}
 \newcommand*{\coverbackground}[1]{\def\rpt@coverbackground{#1}}
+% Optional cover fields, hidden when left empty:
+\newcommand*{\reporttype}[1]{\def\rpt@reporttype{#1}}  % e.g. ASSIGNMENT REPORT
+\newcommand*{\classcode}[1]{\def\rpt@classcode{#1}}    % e.g. L01
+\newcommand*{\group}[1]{\def\rpt@group{#1}}            % e.g. 5
 
 \university{}\school{}\headertext{}\course{}\semester{}
 \instructor{}\city{}\logo{}\coverbackground{}
+\reporttype{}\classcode{}\group{}
+
+% Default date: month and year of the build, in the report language
+% ("November 2026" / "tháng 11 năm 2026"). \date{...} in metadata.tex
+% replaces it with a fixed date.
+\ifrpt@vietnamese
+  \date{tháng \number\month\ năm \number\year}
+\else
+  \date{\ifcase\month\or January\or February\or March\or April\or May\or
+    June\or July\or August\or September\or October\or November\or
+    December\fi\space\number\year}
+\fi
 
 % \addmember{Full name}{Student ID}{Contribution}{Workload}
 % Members are stored once and printed by the cover and member tables;
@@ -271,8 +309,13 @@
   }}
 
 % Fixed words printed by the template, in the language chosen above.
-% \memberlistname and \assessmentname are used in frontmatter/members.tex.
+% The public \...name macros are headings used in frontmatter/.
 \ifrpt@vietnamese
+  \newcommand*{\rpt@txt@class}{Lớp}
+  \newcommand*{\rpt@txt@group}{Nhóm}
+  \newcommand*{\rpt@txt@signature}{Chữ ký}
+  \newcommand*{\declarationname}{Lời cam đoan}
+  \newcommand*{\abbreviationsname}{Danh mục từ viết tắt}
   \newcommand*{\rpt@txt@instructor}{Giảng viên hướng dẫn}
   \newcommand*{\rpt@txt@studentname}{Họ và tên}
   \newcommand*{\rpt@txt@studentid}{MSSV}
@@ -286,6 +329,11 @@
   \newcommand*{\memberlistname}{Danh sách thành viên \& phân công}
   \newcommand*{\assessmentname}{Đánh giá của giảng viên}
 \else
+  \newcommand*{\rpt@txt@class}{Class}
+  \newcommand*{\rpt@txt@group}{Group}
+  \newcommand*{\rpt@txt@signature}{Signature}
+  \newcommand*{\declarationname}{Declaration}
+  \newcommand*{\abbreviationsname}{List of Abbreviations}
   \newcommand*{\rpt@txt@instructor}{Instructor}
   \newcommand*{\rpt@txt@studentname}{Student's Name}
   \newcommand*{\rpt@txt@studentid}{Student ID}
@@ -377,6 +425,38 @@
   \end{center}
   \endgroup}
 
+% No. | name | ID | (room to sign) -- used by frontmatter/declaration.tex
+\newcommand{\printsignaturetable}{%
+  \begingroup
+  \renewcommand{\arraystretch}{1.5}%
+  \def\rpt@member##1##2##3##4{%
+    \stepcounter{rpt@member}\arabic{rpt@member}. & ##1 & ##2
+      & \rule{0pt}{1.4cm} \\ \hline}%
+  \begin{center}
+    \begin{tabularx}{\textwidth}{|r|l|c|C|}
+      \hline
+      \setcounter{rpt@member}{0}%
+      \textbf{\rpt@txt@no} & \textbf{\rpt@txt@fullname}
+        & \textbf{\rpt@txt@studentid} & \textbf{\rpt@txt@signature} \\
+      \hline\hline
+      \rpt@members
+    \end{tabularx}
+  \end{center}
+  \endgroup}
+
+% Cover line "Class: L01 -- Group: 5"; each part only if it is set.
+\newcommand{\rpt@classgroup}{%
+  \ifx\rpt@classcode\@empty
+    \ifx\rpt@group\@empty\else
+      \textbf{\rpt@txt@group:} \rpt@group\par
+    \fi
+  \else
+    \textbf{\rpt@txt@class:} \rpt@classcode
+    \ifx\rpt@group\@empty\else
+      \quad--\quad\textbf{\rpt@txt@group:} \rpt@group
+    \fi\par
+  \fi}
+
 \newcommand{\rpt@coverrule}{%
   {\color{secondary}\rule{0.9\linewidth}{0.2mm}}\par}
 
@@ -406,6 +486,10 @@
       \vspace{1.5\baselineskip}
     \fi
     {\huge\bfseries \rpt@course\par}
+    \ifx\rpt@reporttype\@empty\else
+      \vspace{0.75\baselineskip}
+      {\Large\bfseries \rpt@reporttype\par}
+    \fi
     \vspace{\baselineskip}
     \rpt@coverrule
     \vspace{0.5\baselineskip}
@@ -414,11 +498,34 @@
     \rpt@coverrule
     \vspace{\baselineskip}
     \textbf{\rpt@txt@instructor:} \rpt@instructor\par
+    \rpt@classgroup
     \vspace{0.5cm}
     \printstudenttable\par
     \vspace{1.25cm}
     \rpt@city, \@date.\par
   \end{titlepage}
+  \endgroup}
+
+% -----------------------------------------------------------------------------
+%  11. Lists after the table of contents
+% -----------------------------------------------------------------------------
+% \printfrontlists prints, each on a new page:
+%   - list of figures and list of tables, with the [lists] option;
+%   - list of abbreviations, when config/abbreviations.tex declares any.
+% All of them also get an entry in the table of contents.
+\newcommand{\printfrontlists}{%
+  \begingroup
+  \hypersetup{linkcolor=black}%
+  \ifrpt@lists
+    \clearpage\listoffigures\listoftables
+  \fi
+  \ifrpt@abbreviations
+    \clearpage
+    \section*{\abbreviationsname}%
+    \markboth{\abbreviationsname}{}%
+    \addcontentsline{toc}{section}{\abbreviationsname}%
+    \printacronyms[heading=none]%
+  \fi
   \endgroup}
 
 \endinput

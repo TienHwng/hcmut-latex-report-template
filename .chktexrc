@@ -19,4 +19,5 @@ Silent
 {
     \makecover \listoftodos \printstudenttable
     \printcontributiontable \printassessmenttable
+    \printsignaturetable \printfrontlists \ifreportvietnamese
 }

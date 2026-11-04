@@ -1,7 +1,9 @@
-# Build main.pdf on GitHub.
-#   push / pull request  -> PDF downloadable from the run page ("Artifacts")
+# Check and build the report on GitHub.
+#   lint                 -> ChkTeX with .chktexrc; any warning fails the check
+#   build                -> PDF downloadable from the run page ("Artifacts")
 #   push a tag v*        -> PDF also attached to a GitHub Release
 #                           e.g.  git tag v1.0 && git push origin v1.0
+# The two jobs run in parallel, so a lint warning never blocks the PDF.
 name: Build PDF
 
 on:
@@ -15,6 +17,15 @@ permissions:
   contents: write   # needed to create the release on tags
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # chktex exits with a non-zero code when it reports a warning.
+      - uses: xu-cheng/texlive-action@v3
+        with:
+          run: chktex -q -l .chktexrc main.tex
+
   build:
     runs-on: ubuntu-latest
     steps:
