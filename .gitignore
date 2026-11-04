@@ -20,6 +20,9 @@ build/
 *.xdv
 /main.pdf
 
+# Personal AI instructions (the maintainer's one-line pointer to .github/MAINTAINING.md)
+CLAUDE.local.md
+
 # Editors / OS
 .DS_Store
 Thumbs.db

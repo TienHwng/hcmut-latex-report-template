@@ -8,7 +8,7 @@ Mỗi trang hướng dẫn một nhóm tính năng của template. Mọi đoạn
 
 | Trang | Nội dung |
 | --- | --- |
-| [Bắt đầu](00-bat-dau.md) | Cài đặt, tạo báo cáo mới, kiểm tra trước khi nộp |
+| [Bắt đầu](00-bat-dau.md) | Cài đặt, tạo báo cáo mới, dùng cùng trợ lý AI, kiểm tra trước khi nộp |
 | [Thông tin báo cáo và trang bìa](01-thong-tin-bao-cao.md) | Môn học, đề tài, giảng viên, ngày, thành viên; các bảng tự sinh; lời cam đoan |
 | [Tuỳ chọn của template](02-tuy-chon.md) | `vietnamese`, `draft`, `print`, `lists`; đoạn văn theo ngôn ngữ |
 

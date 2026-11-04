@@ -75,6 +75,12 @@ Thêm nguồn vào `bib/references.bib` và xoá các entry mẫu không dùng (
 
 Build, đọc lại PDF, rồi rà theo danh sách ở mục tiếp theo. File nộp là `main.pdf` ở thư mục gốc.
 
+## Dùng cùng trợ lý AI
+
+Nếu nhờ AI (Claude, ChatGPT, Copilot, Cursor…) viết hoặc sửa báo cáo, hãy cho nó đọc file `AGENTS.md` ở thư mục gốc trước. File này chỉ cho AI biết sửa file nào, dùng lệnh nào của template và tránh những lỗi build hay gặp (như dấu `%`, tên tác giả tiếng Việt trong `.bib`). Claude Code, Copilot, Cursor và Codex tự đọc file này khi bạn mở thư mục template; với ChatGPT hay Claude trên web, hãy đính kèm file này cùng các file `.tex` cần sửa.
+
+AI vẫn có thể bịa nguồn tham khảo hoặc số liệu. Kiểm tra lại mọi trích dẫn trước khi nộp.
+
 ## Kiểm tra trước khi nộp
 
 - [ ] Dòng `\usepackage` trong `main.tex` **không còn** `draft` (không còn chữ DRAFT và ghi chú).

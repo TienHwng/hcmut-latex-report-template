@@ -15,7 +15,7 @@ Trước khi mở issue, xem [Xử lý lỗi thường gặp](docs/vi/11-xu-ly-l
 ## Gửi thay đổi
 
 1. Fork repo và tạo một nhánh mới từ `main`.
-2. Sửa code. Nếu thay đổi ảnh hưởng tới cách dùng template, cập nhật cả README, `docs/vi/` và `docs/en/`.
+2. Sửa code. Nếu thay đổi ảnh hưởng tới cách dùng template, cập nhật cả README, `docs/vi/`, `docs/en/` và `AGENTS.md`. Ghi chú kỹ thuật về cách template hoạt động nằm trong [.github/MAINTAINING.md](.github/MAINTAINING.md).
 3. Chạy các lệnh kiểm tra dưới đây và bảo đảm không còn lỗi hay cảnh báo.
 4. Mở pull request vào `main`, mô tả ngắn thay đổi và lý do.
 
@@ -23,7 +23,7 @@ Trước khi mở issue, xem [Xử lý lỗi thường gặp](docs/vi/11-xu-ly-l
 latexmk                                            # build: không có cảnh báo trong build/main.log
 latexmk zz-test.tex                                # (tuỳ chọn) bản copy của main.tex với [vietnamese]
 chktex -q -l .chktexrc main.tex                    # không in ra gì
-npx markdownlint-cli2 "*.md" "docs/**/*.md"        # 0 issues
+npx markdownlint-cli2 "*.md" "docs/**/*.md" ".github/*.md"   # 0 issues
 ```
 
 CI trên GitHub chạy lại các bước kiểm tra này cho mỗi pull request.
