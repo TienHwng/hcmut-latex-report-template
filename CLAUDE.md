@@ -25,9 +25,9 @@ A pdfLaTeX + BibTeX group-report template for HCMUT (Vietnam).
   - The planned GitHub repo is `tienhwng/hcmut-latex-report-template`, which is not pushed yet. The CI badge and the `git clone` URLs in `docs/*/00-*` use that address; update all of them if the name changes.
   - Both READMEs show two PDF screenshots side by side (`docs/assets/preview-{cover,content}-{vi,en}.png`) and a Mermaid `flowchart LR` of the inputs feeding `main.tex`. Mermaid ignores `direction` inside a subgraph that is linked as a whole, so the diagram uses plain nodes.
   - Regenerate the screenshots whenever the cover or page layout changes:
-    1. Build final-mode copies of main.tex, without `draft`: `zz-test-en.tex` with no option and `zz-test-vi.tex` with `[vietnamese]`.
+    1. Build final-mode copies of main.tex, without `draft`: `zz-test-en.tex` with no option and `zz-test-vi.tex` with `[vietnamese]`. The vi copy must also be Vietnamese in content, or the page comes out half English: point it at temporary translations of `config/metadata.tex` and `chapters/02-method.tex` in a `zz-vi/` folder (the user asked for this). Keep the code inside the listing in English, because listings cannot take diacritics.
     2. Run `pdftoppm -png -r 110 -f N -l N -singlefile` on page 1 and on the "2 Method" page (currently page 6).
-    3. Delete the `zz-test-*` copies.
+    3. Delete the `zz-test-*` copies, `zz-vi/` and their files in `build/`.
   - To validate a diagram, run `npx -p @mermaid-js/mermaid-cli mmdc -i x.mmd -o x.png` in the scratchpad.
 
 ## Commands

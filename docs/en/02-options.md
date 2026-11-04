@@ -40,7 +40,7 @@ A misspelled option (for example `vietnam`) does **not** make the build fail. Th
 | Default date | November 2026 | tháng 11 năm 2026 |
 | Hyphenation, PDF language | English | Vietnamese |
 
-Switching the language does **not** translate what you typed in `config/metadata.tex`, such as the university, the course name or the members' tasks. For a Vietnamese report, enter those in Vietnamese.
+Switching the language does **not** translate what you write yourself: the data in `config/metadata.tex` (the university, the course name, the page header, the members' tasks) and the chapter text. The placeholder chapters on `main` are in English, so turning on `vietnamese` alone gives a half-English, half-Vietnamese report until you rewrite them. For a Vietnamese report, write those parts in Vietnamese.
 
 ### Text that depends on the language
 

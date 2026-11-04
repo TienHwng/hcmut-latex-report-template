@@ -40,7 +40,7 @@ Option viết sai tên (ví dụ `vietnam`) **không** làm build thất bại. 
 | Ngày mặc định | November 2026 | tháng 11 năm 2026 |
 | Quy tắc ngắt từ, ngôn ngữ của PDF | Tiếng Anh | Tiếng Việt |
 
-Đổi ngôn ngữ **không** dịch các thông tin bạn tự nhập trong `config/metadata.tex`, như tên trường, tên môn hay công việc của thành viên. Báo cáo tiếng Việt thì bạn nhập những thông tin đó bằng tiếng Việt.
+Đổi ngôn ngữ **không** dịch những gì bạn tự viết: thông tin trong `config/metadata.tex` (tên trường, tên môn, dòng chữ ở đầu trang, công việc của thành viên) và nội dung các chương. Các chương mẫu trên nhánh `main` viết bằng tiếng Anh, nên nếu chỉ bật `vietnamese` thì báo cáo sẽ nửa Anh nửa Việt cho đến khi bạn viết lại chúng. Báo cáo tiếng Việt thì bạn nhập những phần đó bằng tiếng Việt.
 
 ### Viết một đoạn khác nhau theo ngôn ngữ
 
