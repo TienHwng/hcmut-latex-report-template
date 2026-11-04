@@ -40,10 +40,16 @@
   },
   "ltex.dictionary": {
     "en-US": [
-      "GenAI", "deepfake", "deepfakes", "SCAMPER", "Midjourney", "Veo",
-      "Sora", "Collingridge", "watermarking", "C2PA", "HCMUT"
+      "Collingridge", "HCMUT"
     ]
   },
+
+  // Code Spell Checker (if installed) has no Vietnamese dictionary and would
+  // flag every word of the Vietnamese docs.
+  "cSpell.ignorePaths": [
+    "**/node_modules/**", "**/.git/**", "**/build/**",
+    "README.md", "docs/vi/**"
+  ],
 
   "files.encoding": "utf8",
   "[latex]": {

@@ -4,6 +4,9 @@
     "james-yu.latex-workshop",
     "ltex-plus.vscode-ltex-plus",
     "editorconfig.editorconfig",
-    "davidanson.vscode-markdownlint"
+    "davidanson.vscode-markdownlint",
+    // Shows the GitHub-style "> [!NOTE]" boxes used in README.md and docs/,
+    // which VS Code's built-in Markdown preview renders as plain quotes.
+    "shd101wyy.markdown-preview-enhanced"
   ]
 }

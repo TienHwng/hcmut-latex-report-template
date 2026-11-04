@@ -9,6 +9,9 @@ CmdLine
 {
     # 38: punctuation before closing quotes (``word.'') is American style.
     -n38
+    # 46: "use \( ... \) instead of $ ... $". $...$ is the usual inline-math
+    # style; LaTeX Workshop runs ChkTeX with -wall, which would turn it on.
+    -n46
 }
 
 # A spaced en dash ("Low -- blocks") is used as a separator in tables.
