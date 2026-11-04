@@ -8,10 +8,12 @@ The [main README](../../README.md) is in Vietnamese; this page is its English co
 
 <div align="center">
 
-<img src="../assets/preview-cover-en.png" alt="The report's cover page" width="45%">
-<img src="../assets/preview-content-en.png" alt="A content page with a TikZ diagram, an equation and a code listing" width="45%">
+<img src="../assets/preview-cover-en.png" alt="The report's cover page" width="49%">
+<img src="../assets/preview-content-en.png" alt="A content page with a TikZ diagram, an equation and a code listing" width="49%">
 
 *The cover page and a content page, built with the default English option.*
+
+*Vietnamese build, with the `vietnamese` option: [cover page](../assets/preview-cover-vi.png) · [content page](../assets/preview-content-vi.png).*
 
 </div>
 
