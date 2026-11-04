@@ -156,7 +156,8 @@
   breaklines=true,
   tabsize=4,
   captionpos=b,
-  keepspaces=true,
+  columns=fullflexible,                    % natural letter spacing
+  keepspaces=true,                         % ...but keep indentation
   showstringspaces=false,
 }
 \lstset{style=code}
@@ -224,6 +225,7 @@
 \ifrpt@vietnamese
   % cleveref has no Vietnamese names. Names are capitalised because
   % \cref and \Cref print the same text with the [capitalise] option.
+  \renewcommand{\lstlistingname}{Đoạn mã}  % caption "Listing 1"
   \newcommand*{\rpt@crefname}[2]{\crefname{#1}{#2}{#2}\Crefname{#1}{#2}{#2}}
   \rpt@crefname{section}{Mục}
   \rpt@crefname{subsection}{Mục}
