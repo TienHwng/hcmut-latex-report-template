@@ -26,12 +26,14 @@ Do not edit `config/report.sty` to put report text in it, and do not copy its pa
 
 ## Sample content
 
-A fresh copy of the template is full of placeholders. All of them are meant to be replaced:
+This copy is the `report/ai-digital-content` branch: a complete sample report ("A.I. in Digital Content") written by a real team, not placeholders. If the user is only reading it as an example, do not change it. If they start their own report from it, everything is theirs to replace:
 
-- the four chapters in `chapters/` and the appendix (English demos of each feature);
-- the sample members in `config/metadata.tex`;
-- the sample abbreviations (long forms in English);
-- the sample entries in `bib/references.bib`.
+- the five chapters in `chapters/` and the appendix;
+- the members in `config/metadata.tex`;
+- the abbreviations;
+- the entries in `bib/references.bib`.
+
+The `\todo` in chapter 5 marks a real open question of that team (roles vs. the Contribution column). Do not resolve it by guessing.
 
 Replace what the user asks for. For placeholders they did not mention (for example chapters 2 and 3 when they only asked for chapter 1), tell them those parts are still sample text and ask before rewriting them.
 
